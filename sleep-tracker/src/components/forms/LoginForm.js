@@ -1,6 +1,7 @@
 import React, {useState} from "react";
 import styled from "styled-components";
 
+//todo: form width not quite right
 const StyledLoginForm = styled.form`
     display: flex;
     flex-direction: column;
@@ -10,9 +11,30 @@ const StyledLoginForm = styled.form`
 const StyledInput = styled.input`
     background: linear-gradient(0deg, rgba(255, 255, 255, 0.07), rgba(255, 255, 255, 0.07)), #121212;
     border-radius: 8px 8px 0px 0px;
+    border: none;
+`;
+const ForgotPasswordA = styled.p`
+    color: rgba(255, 255, 255, 0.6);
+    text-decoration: none;
+`;
+const LoginButton = styled.button`
+    background: #39869D;
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.14), 0px 1px 5px rgba(0, 0, 0, 0.2), 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 18px;
+    border: none;
+    font-family: Comfortaa;
+font-style: normal;
+font-weight: bold;
+font-size: 18px;
+line-height: 20px;
+display: flex;
+align-items: center;
+text-align: center;
+
+color: #FFFFFF;
 `;
 
-const LoginForm = (login) =>{
+const LoginForm = ({login}) =>{
     //set state vars
     const [formData, setFormData] = useState({
         id: Date.now(),
@@ -61,7 +83,7 @@ const LoginForm = (login) =>{
                         onChange={handleChange}
                     />
                 </label>
-                <a href="forgotPassword">Forgot Password?</a>{/*todo: link this to something*/}
+                <ForgotPasswordA href="forgotPassword">Forgot Password?</ForgotPasswordA>{/*todo: link this to something*/}
                 <label htmlFor="keepLoggedIn">
                     <input
                         type="checkbox"
@@ -70,7 +92,9 @@ const LoginForm = (login) =>{
                         value={formData.keepLoggedIn}
                         onChange={handleChange}
                     />
+                    Keep Me Logged In
                 </label>
+                <LoginButton>Log In</LoginButton>
             </StyledLoginForm>
         </div>
     );

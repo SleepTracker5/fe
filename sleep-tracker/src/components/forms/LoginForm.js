@@ -1,7 +1,9 @@
 import React, {useState} from "react";
 import styled from "styled-components";
+import LoginPage from "../view/LoginPage";
 
 //todo: form width not quite right
+const elementMargin = "4px";
 const StyledLoginForm = styled.form`
     display: flex;
     flex-direction: column;
@@ -12,6 +14,11 @@ const StyledInput = styled.input`
     background: linear-gradient(0deg, rgba(255, 255, 255, 0.07), rgba(255, 255, 255, 0.07)), #121212;
     border-radius: 8px 8px 0px 0px;
     border: none;
+    height: 30px;
+    padding: 4px;
+    width: 100%;
+    color: white;
+    margin: ${elementMargin} 0;
 `;
 const ForgotPasswordA = styled.p`
     color: rgba(255, 255, 255, 0.6);
@@ -22,19 +29,18 @@ const LoginButton = styled.button`
     box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.14), 0px 1px 5px rgba(0, 0, 0, 0.2), 0px 4px 4px rgba(0, 0, 0, 0.25);
     border-radius: 18px;
     border: none;
-    font-family: Comfortaa;
-font-style: normal;
-font-weight: bold;
-font-size: 18px;
-line-height: 20px;
-display: flex;
-align-items: center;
-text-align: center;
-
-color: #FFFFFF;
+    margin: ${elementMargin} 0;
+    padding: 4px;
+    font-size: 18px;
+    line-height: 20px;
+    width: 33%;
+    color: #FFFFFF;
+`;
+const StyledLabel = styled.label`
+    width: 80%;
 `;
 
-const LoginForm = ({login}) =>{
+const LoginForm = ({login}) => {
     //set state vars
     const [formData, setFormData] = useState({
         id: Date.now(),
@@ -47,12 +53,12 @@ const LoginForm = ({login}) =>{
     const handleChange = (event) => {
         setFormData({...formData, [event.target.name]: event.target.value});
     }
-    const submitLogin = (event) =>{
+    const submitLogin = (event) => {
         event.preventDefault();
         login(formData);//todo: Jaren wrote this logic, needs to be plugged in
         clearForm();//todo:write this function
     }
-    const clearForm = () =>{
+    const clearForm = () => {
         setFormData({
             id: Date.now(),
             email: "",
@@ -60,10 +66,10 @@ const LoginForm = ({login}) =>{
         });
     }
 
-    return(
+    return (
         <div className="loginForm">
             <StyledLoginForm onSubmit={submitLogin}>
-                <label htmlFor="email">
+                <StyledLabel htmlFor="email">
                     <StyledInput
                         type="text"
                         id="email"
@@ -72,8 +78,8 @@ const LoginForm = ({login}) =>{
                         value={formData.email}
                         onChange={handleChange}
                     />
-                </label>
-                <label htmlFor="password">
+                </StyledLabel>
+                <StyledLabel htmlFor="password">
                     <StyledInput
                         type="password"
                         id="password"
@@ -82,9 +88,10 @@ const LoginForm = ({login}) =>{
                         value={formData.password}
                         onChange={handleChange}
                     />
-                </label>
-                <ForgotPasswordA href="forgotPassword">Forgot Password?</ForgotPasswordA>{/*todo: link this to something*/}
-                <label htmlFor="keepLoggedIn">
+                </StyledLabel>
+                <ForgotPasswordA href="#">Forgot
+                    Password?</ForgotPasswordA>{/*todo: link this to something*/}
+                <StyledLabel htmlFor="keepLoggedIn">
                     <input
                         type="checkbox"
                         id="keepLoggedIn"
@@ -93,7 +100,7 @@ const LoginForm = ({login}) =>{
                         onChange={handleChange}
                     />
                     Keep Me Logged In
-                </label>
+                </StyledLabel>
                 <LoginButton>Log In</LoginButton>
             </StyledLoginForm>
         </div>

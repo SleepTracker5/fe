@@ -1,7 +1,8 @@
-import React, {useState} from "react";
+import React, {isValidElement, useEffect, useState} from "react";
 import styled from "styled-components";
-import LoginPage from "../view/LoginPage";
+import * as yup from "yup";
 
+//Define styled components
 //todo: form width not quite right
 const elementMargin = "4px";
 const StyledLoginForm = styled.form`
@@ -41,11 +42,21 @@ const LoginButton = styled.button`
 const StyledLabel = styled.label`
     width: 80%;
 `;
+const ErrP = styled.p`
+    color: red;
+`;
 //todo: need to figure out how to change width to whatever to width of the content is
 const CheckboxLabel = styled.label`
     //this separated label is needed because checkbox formatting is different than input formatting
     width: 34%;
 `;
+
+//Define form schema
+const formSchema = yup.object().shape({
+    email: yup.string().email("Email address is invalid").required("Email address is a required field"),
+    password: yup.string().min(8).required("Password is a required field"),
+    keepLoggedIn: yup.boolean().oneOf([true, false]),
+});
 
 const LoginForm = ({login}) => {
     //set state vars
@@ -55,10 +66,47 @@ const LoginForm = ({login}) => {
         password: "",
         keepLoggedIn: false,
     });
+    const [errState, setErrState] = useState({
+        id: "",
+        email: "",
+        password: "",
+        keepLoggedIn: "",
+    });
+    const [canLogin, setCanLogin] = useState(false);
+
+    //todo: check form validation and set button abled here
+    useEffect(()=>{
+        formSchema.isValid(formData).then(valid =>{
+            setCanLogin(valid);
+        });
+    }, [formData]);
+
+
+    //validate user input
+    const validate = (event) =>{
+        yup.reach(formSchema, event.target.name)
+            .validate(event.target.value)
+            .then( valid =>{
+                setErrState({
+                    ...errState,
+                    [event.target.name]: ""
+                });
+            })
+            .catch(err => {
+                setErrState({
+                    ...errState,
+                    [event.target.name]:err.errors[0]
+                });
+            });
+    }
+
 
     //declare handle/submit functions
     const handleChange = (event) => {
-        setFormData({...formData, [event.target.name]: event.target.value});
+        event.persist();
+        validate(event);
+        const value = event.target.type === "checkbox" ? event.target.checked : event.target.value;
+        setFormData({...formData, [event.target.name]: value});
     }
     const submitLogin = (event) => {
         event.preventDefault();
@@ -87,6 +135,9 @@ const LoginForm = ({login}) => {
                         onChange={handleChange}
                     />
                 </StyledLabel>
+                {errState.email.length > 0 ?
+                    <ErrP style={{color: "red"}}>{errState.email}</ErrP>
+                    : null}
                 <StyledLabel htmlFor="password">
                     <StyledInput
                         type="password"
@@ -97,6 +148,9 @@ const LoginForm = ({login}) => {
                         onChange={handleChange}
                     />
                 </StyledLabel>
+                {errState.password.length > 0 ?
+                    <ErrP style={{color: "red"}}>{errState.password}</ErrP>
+                    : null}
                 <ForgotPasswordA href="#">Forgot
                     Password?</ForgotPasswordA>{/*todo: link this to something*/}
                 <CheckboxLabel htmlFor="keepLoggedIn">
@@ -109,7 +163,7 @@ const LoginForm = ({login}) => {
                     />
                     Keep Me Logged In
                 </CheckboxLabel>
-                <LoginButton>Log In</LoginButton>
+                <LoginButton disabled={!canLogin}>Log In</LoginButton>
             </StyledLoginForm>
         </div>
     );

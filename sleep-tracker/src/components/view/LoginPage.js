@@ -1,5 +1,5 @@
 import React from "react";
-import LoginForm from "../forms/LoginForm";
+import LoginForm from "../forms/LogIn/LoginForm";
 import "./LoginPage.css";
 import styled from "styled-components";
 

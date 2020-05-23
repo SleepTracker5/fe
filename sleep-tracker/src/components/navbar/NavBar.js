@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import {Link} from "react-router-dom";
+import "./NavBar.css";
 
 const elementMargin = "4px;";
 const NavContainer = styled.div`
@@ -27,10 +28,10 @@ const NavBar = () => {
 
     return (
         <NavContainer className="navbar">
-            <Link to="/">
+            <Link className="navlink" to="/">
                 <TitleH2>Sleep Tracker</TitleH2>
             </Link>
-            <Link to="/login">
+            <Link className="navlink" to="/login">
                 <LoginP>login</LoginP>{/*todo: Add routes*/}
             </Link>
         </NavContainer>

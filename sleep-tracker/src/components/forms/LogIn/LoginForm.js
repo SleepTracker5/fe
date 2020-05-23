@@ -4,7 +4,7 @@ import * as yup from "yup";
 
 //Define styled components
 //todo: form width not quite right
-const elementMargin = "4px";
+const elementMargin = "6px";
 const StyledLoginForm = styled.form`
     display: flex;
     flex-direction: column;
@@ -25,7 +25,9 @@ const StyledInput = styled.input`
 const ForgotPasswordA = styled.a`
     color: rgba(255, 255, 255, 0.6);
     text-decoration: none;
-    width: 30%;
+    width: 23%;
+    margin: ${elementMargin} 0;
+    font-size: 12px;
 `;
 const LoginButton = styled.button`
     background: #39869D;
@@ -33,6 +35,7 @@ const LoginButton = styled.button`
     border-radius: 18px;
     border: none;
     margin: ${elementMargin} 0;
+    margin-top: 4%;
     padding: 4px;
     font-size: 18px;
     line-height: 20px;
@@ -41,6 +44,7 @@ const LoginButton = styled.button`
 `;
 const StyledLabel = styled.label`
     width: 80%;
+    margin: ${elementMargin} 0;
 `;
 const ErrP = styled.p`
     color: red;
@@ -49,6 +53,7 @@ const ErrP = styled.p`
 const CheckboxLabel = styled.label`
     //this separated label is needed because checkbox formatting is different than input formatting
     width: 34%;
+    margin: ${elementMargin} 0;
 `;
 
 //Define form schema

@@ -7,8 +7,9 @@ const elementMargin = "4px";
 const StyledLoginForm = styled.form`
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    justify-content: left;
+    align-items: left;
+    margin: 4%;
 `;
 const StyledInput = styled.input`
     background: linear-gradient(0deg, rgba(255, 255, 255, 0.07), rgba(255, 255, 255, 0.07)), #121212;
@@ -20,9 +21,10 @@ const StyledInput = styled.input`
     color: white;
     margin: ${elementMargin} 0;
 `;
-const ForgotPasswordA = styled.p`
+const ForgotPasswordA = styled.a`
     color: rgba(255, 255, 255, 0.6);
     text-decoration: none;
+    width: 30%;
 `;
 const LoginButton = styled.button`
     background: #39869D;
@@ -38,6 +40,11 @@ const LoginButton = styled.button`
 `;
 const StyledLabel = styled.label`
     width: 80%;
+`;
+//todo: need to figure out how to change width to whatever to width of the content is
+const CheckboxLabel = styled.label`
+    //this separated label is needed because checkbox formatting is different than input formatting
+    width: 34%;
 `;
 
 const LoginForm = ({login}) => {
@@ -63,6 +70,7 @@ const LoginForm = ({login}) => {
             id: Date.now(),
             email: "",
             password: "",
+            keepLoggedIn: false,
         });
     }
 
@@ -91,7 +99,7 @@ const LoginForm = ({login}) => {
                 </StyledLabel>
                 <ForgotPasswordA href="#">Forgot
                     Password?</ForgotPasswordA>{/*todo: link this to something*/}
-                <StyledLabel htmlFor="keepLoggedIn">
+                <CheckboxLabel htmlFor="keepLoggedIn">
                     <input
                         type="checkbox"
                         id="keepLoggedIn"
@@ -100,7 +108,7 @@ const LoginForm = ({login}) => {
                         onChange={handleChange}
                     />
                     Keep Me Logged In
-                </StyledLabel>
+                </CheckboxLabel>
                 <LoginButton>Log In</LoginButton>
             </StyledLoginForm>
         </div>

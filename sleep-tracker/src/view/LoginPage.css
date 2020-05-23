@@ -21,9 +21,6 @@ h1{
 }
 
 /*leftContent and loginForm are the two halves(left and right) of the login page*/
-.leftContent{
-}
-
 .loginForm{
     width: 50%;
 }

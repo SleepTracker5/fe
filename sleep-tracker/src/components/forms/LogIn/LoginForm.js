@@ -1,10 +1,12 @@
-import React, {isValidElement, useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
 import styled from "styled-components";
 import * as yup from "yup";
+import {gsap} from "gsap";
 
 //Define styled components
 //todo: form width not quite right
 const elementMargin = "6px";
+const width100 = "@media(max-width: 500px){width: 100%;}";
 const StyledLoginForm = styled.form`
     display: flex;
     flex-direction: column;
@@ -21,13 +23,15 @@ const StyledInput = styled.input`
     width: 100%;
     color: white;
     margin: ${elementMargin} 0;
+    ${width100}
 `;
-const ForgotPasswordA = styled.a`
+const FormLinkP = styled.p`
     color: rgba(255, 255, 255, 0.6);
     text-decoration: none;
     width: 23%;
     margin: ${elementMargin} 0;
     font-size: 12px;
+    ${width100}
 `;
 const LoginButton = styled.button`
     background: #39869D;
@@ -41,19 +45,24 @@ const LoginButton = styled.button`
     line-height: 20px;
     width: 33%;
     color: #FFFFFF;
+    ${width100}
 `;
 const StyledLabel = styled.label`
     width: 80%;
     margin: ${elementMargin} 0;
+    ${width100}
 `;
 const ErrP = styled.p`
     color: red;
+    font-size: 12px;
+    width: 30%;
 `;
-//todo: need to figure out how to change width to whatever to width of the content is
+//todo: need to figure out how to change width to whatever the width of the content is
 const CheckboxLabel = styled.label`
     //this separated label is needed because checkbox formatting is different than input formatting
     width: 34%;
     margin: ${elementMargin} 0;
+    ${width100}
 `;
 
 //Define form schema
@@ -105,6 +114,14 @@ const LoginForm = ({login}) => {
             });
     }
 
+    const errBounce = (event) =>{
+        console.log("working: ", event.target.name);
+        const animationDuration = .5;
+        const tl = gsap.timeline();
+        tl.to(event.target, {duration: animationDuration / 2, y: -10});
+        tl.to(event.target, {duration: animationDuration, y: 0, ease: "bounce"});
+    }
+
 
     //declare handle/submit functions
     const handleChange = (event) => {
@@ -138,6 +155,7 @@ const LoginForm = ({login}) => {
                         placeholder="email"
                         value={formData.email}
                         onChange={handleChange}
+                        onBlur={errBounce}
                     />
                 </StyledLabel>
                 {errState.email.length > 0 ?
@@ -151,13 +169,14 @@ const LoginForm = ({login}) => {
                         placeholder="password"
                         value={formData.password}
                         onChange={handleChange}
+                        onBlur={errBounce}
                     />
                 </StyledLabel>
                 {errState.password.length > 0 ?
                     <ErrP style={{color: "red"}}>{errState.password}</ErrP>
                     : null}
-                <ForgotPasswordA href="#">Forgot
-                    Password?</ForgotPasswordA>{/*todo: link this to something*/}
+                <FormLinkP>Forgot Password?</FormLinkP>{/*todo: link this to something*/}
+                <FormLinkP>Don't have an account?</FormLinkP>{/*todo: link to misty's page*/}
                 <CheckboxLabel htmlFor="keepLoggedIn">
                     <input
                         type="checkbox"

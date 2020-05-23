@@ -1,8 +1,8 @@
 import React from "react";
-import LoginForm from "../forms/LogIn/LoginForm";
+import LoginForm from "../components/forms/LogIn/LoginForm";
 import "./LoginPage.css";
 import styled from "styled-components";
-import NavBar from "../navbar/NavBar";
+import NavBar from "../components/navbar/NavBar";
 
 const Container = styled.div`
     display: flex;
@@ -10,6 +10,10 @@ const Container = styled.div`
     align-items: center;
     width: 100%;
     height: 100vh;
+    
+    @media(max-width: 500px){
+        flex-direction: column;
+    }
 `;
 
 const LoginPage = () => {

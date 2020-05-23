@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import LoginPage from "./components/view/LoginPage";
+import LoginPage from "./view/LoginPage";
 import {Route} from "react-router-dom";
 import NavBar from "./components/navbar/NavBar";
 

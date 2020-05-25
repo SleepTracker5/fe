@@ -85,7 +85,7 @@ const formSchema = yup.object().shape({
 const LoginForm = ({ login }) => {
   //set state vars
   const [formData, setFormData] = useState({
-    id: Date.now(),
+    // id: Date.now(),  -- NODE backend will generate ID automatically
     email: "",
     password: "",
     keepLoggedIn: false,

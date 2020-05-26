@@ -1,8 +1,45 @@
 //body styling
 body {
     display: flex;
-    flex-direction: column;margin: 10% 10% 0 10%;
+    flex-direction: column;
+    // margin: 10% 10% 0 10%;
     font-family: 'Comfortaa', cursive;
-    border: 1px solid red;
-
+    // border: 1px solid red;
+    background-color: #121212;
+}
+.main-content {
+    display: flex;
+    justify-content: space-between;
+    color: @white87;
+    border: 1px solid blue;
+    margin: 5% 5% 0 5%;
+    .main-cta {
+        width: 25%;
+        h2 {
+            font-size: 2.5rem;
+            margin: 5% 10% 5% 0;
+        }
+        h4 {
+            font-size: 1.2rem;
+            color: darken(@white87, 30%);
+        }
+    }
+    .main-img{
+        width: 50%;
+        img {
+            width: 100%;
+            height: auto;
+        }
+    }
+}
+.lower-content {
+    display: flex;
+    justify-content: space-between;
+    margin: 5% 5% 0 5%;
+    color: @white87;
+    border:  1px solid yellow;
+    .gallery {
+        display: flex;
+        justify-content: space-around;
+    }
 }

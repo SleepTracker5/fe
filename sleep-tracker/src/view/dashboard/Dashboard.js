@@ -36,6 +36,7 @@ function Dashboard() {
     e.preventDefault();
     localStorage.removeItem("token");
     window.location.reload(false);
+    //props history push to login?
   };
   return (
     <div className="container">

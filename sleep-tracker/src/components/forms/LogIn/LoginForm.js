@@ -4,6 +4,7 @@ import styled from "styled-components";
 import * as yup from "yup";
 import {gsap} from "gsap";
 import axios from "axios";
+import {Link} from "react-router-dom";
 
 //Define styled components
 //todo: form width not quite right
@@ -201,7 +202,9 @@ const LoginForm = ({history}) => {
                 ) : null}
                 <FormLinkP>Forgot Password?</FormLinkP>
                 {/*todo: link this to something*/}
-                <FormLinkP>Don't have an account?</FormLinkP>
+                <Link to={"/signup"}>
+                    <FormLinkP>Don't have an account?</FormLinkP>
+                </Link>
                 {/*todo: link to misty's page*/}
                 <CheckboxLabel htmlFor="keepLoggedIn">
                     <input

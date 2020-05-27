@@ -7,6 +7,7 @@ import PrivateRoute from "./components/PrivateRoute";
 import Dashboard from "./view/dashboard/Dashboard";
 import NavBar from "./components/navbar/NavBar";
 import Bedtime from "./view/dashboard/sleeptimer/Bedtime";
+import SignUpPage from "./view/SignUpPage";
 
 function App() {
   const history = useHistory();
@@ -21,6 +22,9 @@ function App() {
         <Route path="/login">
           <LoginPage history={history} />
         </Route>
+          <Route path={"/signup"}>
+              <SignUpPage history={history}/>
+          </Route>
         {/*Route to Dashboard needs to be a PrivateRoute.*/}
         <Route exact path="/dashboard" component={Dashboard} />
         <Route exact path="/bedtime" component={Bedtime} />

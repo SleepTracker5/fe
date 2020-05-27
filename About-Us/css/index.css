@@ -127,6 +127,7 @@ body {
   flex-direction: column;
   font-family: 'Comfortaa', cursive;
   background-color: #121212;
+  color: #FFFFFF;
 }
 header {
   display: flex;

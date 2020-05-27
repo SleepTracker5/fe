@@ -55,7 +55,7 @@ function Dashboard() {
       <div className="chart-container">
         <div className="chart-wrapper">
           <BarChart
-            width={1250}
+            width={window.innerWidth * .66}
             height={550}
             data={data}
             margin={{ top: 20, right: 30, left: 20, bottom: 2 }}

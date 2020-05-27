@@ -1,0 +1,38 @@
+/*todo: add a reset somewhere?*/
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa');
+
+
+
+
+html{
+    font-family: Comfortaa, serif;
+    background-color: black;
+    color: rgba(255, 255, 255, 0.6);
+    box-sizing: border-box;
+}
+body{
+    font-family: Comfortaa, serif;
+}
+
+h1{
+    font-style: normal;
+    font-weight: bold;
+    font-size: 48px;
+    line-height: 54px;
+}
+
+.nameContainer{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 80%;
+}
+
+.nameContainer > *{
+    width: 45%;
+}
+
+    /*leftContent and loginForm are the two halves(left and right) of the login page*/
+.signUpForm{
+    width: 50%;
+}

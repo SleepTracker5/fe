@@ -4,7 +4,7 @@ import gsap from "gsap";
 
 const elementMargin = "6px";
 const width100 = "@media(max-width: 500px){width: 100%;}";
-const StyledLoginForm = styled.form`
+const StyledSignUpForm = styled.form`
   display: flex;
   flex-direction: column;
   justify-content: left;
@@ -122,10 +122,11 @@ const SignUpForm = ({history}) => {
 
     return (
         <div className="signUpForm">
-            <form onSubmit={submitSignUp}>
+            <StyledSignUpForm onSubmit={submitSignUp}>
                 <section className="nameContainer">
-                    <StyledLabel htmlFor="firstName">
+                    <label className="nameElement" htmlFor="firstName">
                         <StyledInput
+                            className="nameElement"
                             type="text"
                             id="firstName"
                             name="firstName"
@@ -133,9 +134,10 @@ const SignUpForm = ({history}) => {
                             value={formData.firstName}
                             onChange={handleChange}
                         />
-                    </StyledLabel>
-                    <StyledLabel htmlFor="lastName">
+                    </label>
+                    <label className="nameElement" htmlFor="lastName">
                         <StyledInput
+                            className="nameElement"
                             type="text"
                             id="lastName"
                             name="lastName"
@@ -143,7 +145,7 @@ const SignUpForm = ({history}) => {
                             value={formData.lastName}
                             onChange={handleChange}
                         />
-                    </StyledLabel>
+                    </label>
                 </section>
                 <StyledLabel htmlFor="email">
                     <StyledInput
@@ -178,8 +180,8 @@ const SignUpForm = ({history}) => {
                     />
                     Keep Me Logged In
                 </CheckboxLabel>
-                <SignUpButton disabled={!canSignUp}>Log In</SignUpButton>
-            </form>
+                <SignUpButton disabled={!canSignUp}>Sign Up</SignUpButton>
+            </StyledSignUpForm>
         </div>
     );
 }

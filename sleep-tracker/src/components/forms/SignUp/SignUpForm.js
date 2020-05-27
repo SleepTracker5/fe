@@ -2,6 +2,8 @@ import React, {useState} from 'react';
 import styled from 'styled-components';
 import gsap from "gsap";
 
+
+//define styled components
 const elementMargin = "6px";
 const width100 = "@media(max-width: 500px){width: 100%;}";
 const StyledSignUpForm = styled.form`
@@ -68,7 +70,7 @@ const CheckboxLabel = styled.label`
   ${width100}
 `;
 
-const SignUpForm = ({history}) => {
+const SignUpForm = ({history}) => {//todo: use history when changing the page
     //set state vars
     const [formData, setFormData] = useState({
         firstName: "",
@@ -187,101 +189,3 @@ const SignUpForm = ({history}) => {
 }
 
 export default SignUpForm;
-
-
-
-
-/*Define styled components
-
-
-
-const LoginForm = ({history}) => {
-
-    //todo: check form validation and set button abled here
-    useEffect(() => {
-        formSchema.isValid(formData).then((valid) => {
-            setCanLogin(valid);
-        });
-    }, [formData]);
-
-    //validate user input
-    const validate = (event) => {
-        yup
-            .reach(formSchema, event.target.name)
-            .validate(event.target.value)
-            .then((valid) => {
-                setErrState({
-                    ...errState,
-                    [event.target.name]: "",
-                });
-            })
-            .catch((err) => {
-                setErrState({
-                    ...errState,
-                    [event.target.name]: err.errors[0],
-                });
-            });
-    };
-
-
-
-    return (
-        <div className="loginForm">
-            <StyledLoginForm onSubmit={submitLogin}>
-                <StyledLabel htmlFor="email">
-                    <StyledInput
-                        type="text"
-                        id="email"
-                        name="email"
-                        placeholder="username"
-                        value={formData.email}
-                        onChange={handleChange}
-                        onBlur={errBounce}
-                    />
-                </StyledLabel>
-                {errState.email.length > 0 ? (
-                    <ErrP style={{color: "red"}}>{errState.email}</ErrP>
-                ) : null}
-                <StyledLabel htmlFor="password">
-                    <StyledInput
-                        type="password"
-                        id="password"
-                        name="password"
-                        placeholder="password"
-                        value={formData.password}
-                        onChange={handleChange}
-                        onBlur={errBounce}
-                    />
-                </StyledLabel>
-                {errState.password.length > 0 ? (
-                    <ErrP style={{color: "red"}}>{errState.password}</ErrP>
-                ) : null}
-<FormLinkP>Forgot Password?</FormLinkP>
-<FormLinkP>Don't have an account?</FormLinkP>
-{todo: link to misty's page}
-<CheckboxLabel htmlFor="keepLoggedIn">
-    <input
-        type="checkbox"
-        id="keepLoggedIn"
-        name="keepLoggedIn"
-        value={formData.keepLoggedIn}
-        onChange={handleChange}
-    />
-    Keep Me Logged In
-</CheckboxLabel>
-<LoginButton disabled={!canLogin}>Log In</LoginButton>
-</StyledLoginForm>
-</div>
-);
-};
-
-export default LoginForm;
-
-//Define form schema
-const formSchema = yup.object().shape({
-    email: yup.string().required("Email address is a required field"),
-    password: yup.string().min(4).required("Password is a required field"),
-    keepLoggedIn: yup.boolean().oneOf([true, false]),
-});
-
- */

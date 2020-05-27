@@ -7,7 +7,6 @@ import axios from "axios";
 import {Link} from "react-router-dom";
 
 //Define styled components
-//todo: form width not quite right
 const elementMargin = "6px";
 const width100 = "@media(max-width: 500px){width: 100%;}";
 const StyledLoginForm = styled.form`
@@ -84,7 +83,6 @@ const formSchema = yup.object().shape({
 const LoginForm = ({history}) => {
     //set state vars
     const [formData, setFormData] = useState({
-        // id: Date.now(),  -- NODE backend will generate ID automatically
         email: "",
         password: "",
         keepLoggedIn: false,
@@ -97,7 +95,6 @@ const LoginForm = ({history}) => {
     });
     const [canLogin, setCanLogin] = useState(false);
 
-    //todo: check form validation and set button abled here
     useEffect(() => {
         formSchema.isValid(formData).then((valid) => {
             setCanLogin(valid);
@@ -153,7 +150,7 @@ const LoginForm = ({history}) => {
             .then((res) => {
                 console.log(res);
                 localStorage.setItem("token", res.data.data.token);
-                history.push("/dashboard"); //rename Route to desired name todo: add history to routes. Change protected to dashboard
+                history.push("/dashboard");
             })
             .catch((err) => {
                 console.log("There was an error during login: ", err);
@@ -205,7 +202,6 @@ const LoginForm = ({history}) => {
                 <Link to={"/signup"}>
                     <FormLinkP>Don't have an account?</FormLinkP>
                 </Link>
-                {/*todo: link to misty's page*/}
                 <CheckboxLabel htmlFor="keepLoggedIn">
                     <input
                         type="checkbox"

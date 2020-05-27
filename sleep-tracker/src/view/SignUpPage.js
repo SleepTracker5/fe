@@ -4,6 +4,7 @@ import NavBar from "../components/navbar/NavBar";
 import "./SignUpPage.css";
 import styled from "styled-components";
 
+//define styled component
 const Container = styled.div`
     display: flex;
     justify-content: center;
@@ -31,19 +32,3 @@ function SignUpPage({history}) {
 }
 
 export default SignUpPage;
-
-/*
-const LoginPage = ({history}) => {
-
-    return (
-        <Container className="loginPage">
-            <NavBar/>
-            <div className="leftContent">
-                <h1>Welcome Back!</h1>
-                <p className="oneStepCloser">You’re one step closer to finding your ideal sleep schedule.</p>
-            </div>
-            <LoginForm history={history}/>
-        </Container>
-    );
-}
- */

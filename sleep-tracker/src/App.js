@@ -2,6 +2,7 @@ import React from "react";
 import { useHistory } from "react-router-dom";
 import "./App.css";
 import LoginPage from "./view/LoginPage";
+import SignUp from './view/SignUpPage';
 import { Route, Link, Switch } from "react-router-dom";
 import PrivateRoute from "./components/PrivateRoute";
 import Dashboard from "./view/dashboard/Dashboard";
@@ -21,7 +22,9 @@ function App() {
         <Route path="/login">
           <LoginPage history={history} />
         </Route>
-        {/*Route to Dashboard needs to be a PrivateRoute.*/}
+        <Route path="/signup">
+          <SignUp/>
+        </Route>
         <PrivateRoute exact path="/dashboard" component={Dashboard} />
         <Route path="/dashboard">
           <Dashboard history={history} />

@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
 import styled from "styled-components";
 import * as yup from "yup";
 import { gsap } from "gsap";
-import { useHistory } from "react-router-dom";
+import axios from "axios";
 
 //Define styled components
 //todo: form width not quite right
@@ -75,16 +74,12 @@ const CheckboxLabel = styled.label`
 
 //Define form schema
 const formSchema = yup.object().shape({
-  email: yup
-    .string()
-    .email("Email address is invalid")
-    .required("Email address is a required field"),
-  password: yup.string().min(8).required("Password is a required field"),
+  email: yup.string().required("Email address is a required field"),
+  password: yup.string().min(4).required("Password is a required field"),
   keepLoggedIn: yup.boolean().oneOf([true, false]),
 });
 
-const LoginForm = ({ login }) => {
-  let history = useHistory();
+const LoginForm = ({ history }) => {
   //set state vars
   const [formData, setFormData] = useState({
     // id: Date.now(),  -- NODE backend will generate ID automatically
@@ -146,7 +141,6 @@ const LoginForm = ({ login }) => {
   };
   const submitLogin = (event) => {
     event.preventDefault();
-    //I (Jaren), added in Login logic below -- "/protected" will need to be changed based on naming conventions of suggested page given.
     axios
       .create({ baseURL: "https://sleeptrackerbw.herokuapp.com/api" })
       .post("/login", {
@@ -156,7 +150,7 @@ const LoginForm = ({ login }) => {
       .then((res) => {
         console.log(res);
         localStorage.setItem("token", res.data.data.token);
-        history.push("/dashboard"); //rename Route to desired name
+        history.push("/dashboard");
       })
       .catch((err) => {
         console.log("There was an error during login: ", err);
@@ -180,7 +174,7 @@ const LoginForm = ({ login }) => {
             type="text"
             id="email"
             name="email"
-            placeholder="email"
+            placeholder="username"
             value={formData.email}
             onChange={handleChange}
             onBlur={errBounce}

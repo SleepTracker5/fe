@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
 import moment from "moment";
 import "./Dashboard.css";
 import DashboardCards from "./DashboardCards";
@@ -12,6 +12,7 @@ import {
   Tooltip,
   Legend,
 } from "recharts";
+import { axiosWithAuth } from "../../util/axiosWithAuth";
 
 //dummy data
 const data = [
@@ -26,13 +27,24 @@ const data = [
   { date: "6 2 2020", SG: 7, AS: 7, AMT: 12 },
 ];
 
+const submitSleep = (e) => {
+  e.preventDefault();
+  axiosWithAuth()
+    .get("/sleep")
+    .then((res) => {
+      console.log(res);
+    })
+    .catch((err) => {
+      console.log("There was an error getting mock sleep data: ", err);
+    });
+};
+
 //function to create date format using moment.js on x-axis
 function formatXAxis(tickItem) {
   return moment(tickItem).format("MMM DD");
 }
 
-function Dashboard() {
-  let history = useHistory();
+function Dashboard({ history }) {
   const logout = (e) => {
     e.preventDefault();
     localStorage.removeItem("token");
@@ -57,7 +69,7 @@ function Dashboard() {
           <h1>Your Sleep This Week</h1>
           <BarChart
             width={window.innerWidth * 0.66}
-            height={350}
+            height={550}
             data={data}
             margin={{ top: 20, right: 30, left: 20, bottom: 2 }}
           >
@@ -69,8 +81,11 @@ function Dashboard() {
             <Bar dataKey="SG" name="Sleep Goal" fill="#233337" unit="hrs" />
             <Bar dataKey="AS" name="Actual Sleep" fill="#A5A5A5" unit="hrs" />
           </BarChart>
+          <button className="sleep-data-btn" onClick={submitSleep}>
+            fill sleep data to graph
+          </button>
         </div>
-        <h1>
+        <h1 className="card-title">
           Week of {} - {}
         </h1>
         <DashboardCards />

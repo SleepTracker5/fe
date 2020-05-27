@@ -16,7 +16,7 @@ const Container = styled.div`
     }
 `;
 
-const LoginPage = () => {
+const LoginPage = ({history}) => {
 
     return (
         <Container className="loginPage">
@@ -25,7 +25,7 @@ const LoginPage = () => {
                 <h1>Welcome Back!</h1>
                 <p className="oneStepCloser">You’re one step closer to finding your ideal sleep schedule.</p>
             </div>
-            <LoginForm/>
+            <LoginForm history={history}/>
         </Container>
     );
 }

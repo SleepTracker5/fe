@@ -1,8 +1,10 @@
 .nav-container {
-  background: linear-gradient(0deg,
-      rgba(255, 255, 255, 0.09),
-      rgba(255, 255, 255, 0.09),
-      #121212);
+  background: linear-gradient(
+    0deg,
+    rgba(255, 255, 255, 0.09),
+    rgba(255, 255, 255, 0.09),
+    #121212
+  );
   position: absolute;
   top: 0;
   left: 0;
@@ -12,7 +14,11 @@
   align-items: center;
 }
 
-.nav-title {
+.graph-title {
+  margin-top: 3em;
+}
+
+h2 {
   font-size: 48px;
   margin: 4px;
 }
@@ -32,16 +38,19 @@ a {
 }
 
 .chart-container {
-  margin-left: 1em;
-  margin-right: 5em;
-  display: flex;
+  margin-left: 20em;
+  margin-right: 20em;
 }
 
 .chart-wrapper {
   margin-top: 5em;
-  padding: 6px 0;
-  width: 55%;
-  background-color: #171717;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 button {
@@ -49,6 +58,11 @@ button {
 }
 
 /*Card Styles*/
+.card-title {
+  margin-top: 4em;
+  background-color: #171717;
+}
+
 .card-wrapper {
   margin-top: 5em;
   padding: 6px 0;

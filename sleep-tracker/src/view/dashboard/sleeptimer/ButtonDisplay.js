@@ -6,6 +6,7 @@ function ButtonDisplay(props) {
     <div className="button-container">
       {props.status === 0 ? (
         <button className="start-button" onClick={props.goodnight}>
+          {/*Make onClick create new Date().toISOString */}
           <span></span>
           <span></span>
           <span></span>
@@ -18,6 +19,7 @@ function ButtonDisplay(props) {
       {props.status === 1 ? (
         <div>
           <button className="stop-button" onClick={props.wakeUp}>
+            {/*Make onClick create new Date().toISOString */}
             <span></span>
             <span></span>
             <span></span>

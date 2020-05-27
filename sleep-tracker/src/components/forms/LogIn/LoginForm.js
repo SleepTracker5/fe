@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { axiosWithAuth } from "../../../util/axiosWithAuth";
+import axios from "axios";
 import styled from "styled-components";
 import * as yup from "yup";
 import { gsap } from "gsap";
+import { useHistory } from "react-router-dom";
 
 //Define styled components
 //todo: form width not quite right
@@ -83,6 +84,7 @@ const formSchema = yup.object().shape({
 });
 
 const LoginForm = ({ login }) => {
+  let history = useHistory();
   //set state vars
   const [formData, setFormData] = useState({
     // id: Date.now(),  -- NODE backend will generate ID automatically
@@ -145,12 +147,16 @@ const LoginForm = ({ login }) => {
   const submitLogin = (event) => {
     event.preventDefault();
     //I (Jaren), added in Login logic below -- "/protected" will need to be changed based on naming conventions of suggested page given.
-    axiosWithAuth()
-      .post("/login", formData)
+    axios
+      .create({ baseURL: "https://sleeptrackerbw.herokuapp.com/api" })
+      .post("/login", {
+        username: formData.email,
+        password: formData.password,
+      })
       .then((res) => {
         console.log(res);
-        localStorage.setItem("token", res.body.data.token);
-        this.props.history.push("/protected"); //rename Route to desired name
+        localStorage.setItem("token", res.data.data.token);
+        history.push("/dashboard"); //rename Route to desired name
       })
       .catch((err) => {
         console.log("There was an error during login: ", err);

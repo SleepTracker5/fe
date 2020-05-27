@@ -124,7 +124,7 @@ table {
 }
 header {
   display: flex;
-  background-color: #333333;
+  background: linear-gradient(0deg, rgba(255, 255, 255, 0.09), rgba(255, 255, 255, 0.09)), #121212;
 }
 header nav {
   display: flex;
@@ -137,6 +137,9 @@ header nav a {
   text-decoration: none;
   color: #b3b3b3;
   margin: 2% 0 2% 0;
+}
+header nav a:hover {
+  color: #39869D;
 }
 header h1 {
   font-size: 2.3rem;

@@ -4,7 +4,7 @@ import ClockDisplay from "./ClockDisplay";
 import ButtonDisplay from "./ButtonDisplay";
 import "./Clock.css";
 
-function Bedtime() {
+function Bedtime({ history }) {
   const [time, setTime] = useState({ ms: 0, s: 0, m: 0, h: 0 });
   const [iv, setIv] = useState();
   //clock not started = 0
@@ -56,7 +56,7 @@ function Bedtime() {
   const logout = (e) => {
     e.preventDefault();
     localStorage.removeItem("token");
-    window.location.reload(false);
+    history.push("/login");
   };
 
   return (
@@ -69,7 +69,7 @@ function Bedtime() {
           {/*****TODO:needs to be changed to whatever the route is actually named */}
           <p>About</p>
         </Link>
-        <Link className="logout" onClick={logout} to="/login">
+        <Link className="logout" onClick={logout}>
           <p>Logout</p>
         </Link>
       </div>

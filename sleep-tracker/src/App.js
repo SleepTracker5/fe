@@ -22,7 +22,10 @@ function App() {
           <LoginPage history={history} />
         </Route>
         {/*Route to Dashboard needs to be a PrivateRoute.*/}
-        <Route exact path="/dashboard" component={Dashboard} />
+        <PrivateRoute exact path="/dashboard" component={Dashboard} />
+        <Route path="/dashboard">
+          <Dashboard history={history} />
+        </Route>
         <Route exact path="/bedtime" component={Bedtime} />
       </Switch>
     </div>

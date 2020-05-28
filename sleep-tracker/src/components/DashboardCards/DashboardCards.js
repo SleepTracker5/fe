@@ -1,19 +1,22 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Modal from "react-modal";
 import { axiosWithAuth } from "../../util/axiosWithAuth";
+import { useHistory } from "react-router-dom";
+
+const initalSleepState = {
+  id: "",
+  start_formatted: "",
+  end_formatted: "",
+};
 
 function DashboardCards({ sleep }) {
-  const initalSleepState = {
-    id: "",
-    start_formatted: "",
-    end_formatted: "",
-  };
+  const history = useHistory();
 
   const [editSleep, setEditSleep] = useState(initalSleepState);
   const [modalIsOpen, setModalIsOpen] = useState(false);
 
   const changeHandler = (e) => {
-    e.preventDefault();
+    e.persist();
     setEditSleep({ ...editSleep, [e.target.name]: e.target.value });
   };
 
@@ -23,10 +26,10 @@ function DashboardCards({ sleep }) {
     e.target.reset();
   };
 
-  const editSleepHandler = (e) => {
+  const submitSleepEdit = (e) => {
     e.preventDefault();
     axiosWithAuth()
-      .put(`/sleep`)
+      .put(`/sleep/${editSleep.id}`, editSleep)
       .then((res) => {
         console.log("This is the put request: ", res);
       })
@@ -37,7 +40,7 @@ function DashboardCards({ sleep }) {
   const deleteSleep = (e) => {
     e.preventDefault();
     axiosWithAuth()
-      .delete("/sleep/${id}") //need to figure out what the name of the state will be before id.
+      .delete(`/sleep/${sleep.id}`) //need to figure out what the name of the state will be before id.
       .then((res) => {
         console.log("The res for delete is: ", res);
       })

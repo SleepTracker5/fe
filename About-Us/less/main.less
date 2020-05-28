@@ -4,11 +4,21 @@
     h2 {
         font-size: 2rem;
         font-weight: bolder;
-        margin: 5% 0 5% 0;
+        margin: 2% 0 5% 0;
+    }
+    h3 {
+        font-size: 1.5rem;
+        margin: 0.5%;
+        color: darken(@white87, 30%);
     }
     P {
         width: 40%;
+        margin: 0.5%;
         font-size: 1.5rem;
+        color: darken(@white87, 30%);
+    }
+    ul {
+        margin: 0.5%;
     }
     .intro {
         display: flex;
@@ -16,6 +26,10 @@
         // align-items: center;
         margin: 10% 10% 0 10%;
         // text-align: center;
+        img {
+            width: 50%;
+            height: auto;
+        }
     }
     .goal {
         display: flex;
@@ -39,20 +53,21 @@
     h2 {
         font-size: 2rem;
         font-weight: bolder;
-        margin: 5% 0 5% 0;
+        margin: 2% 0 5% 0;
     }
     h3 {
         font-size: 1.5rem;
+        color: darken(@white87, 30%);
+        margin-bottom: 3rem;
     }
     P {
         width: 40%;
         font-size: 0.9rem;
-        margin: 0.5%;
-    }
-    ul {
-        list-style-type: disc;
+        margin-bottom: 1rem;
+        color: darken(@white87, 30%);
     }
     .team {
+        // border: 1px solid yellow;
         display: flex;
         flex-direction: column;
         // flex-direction: column;
@@ -60,8 +75,21 @@
         margin: 5% 10% 0 10%;
         // text-align: center;
         .member {
+            // border: 1px solid red;
             display: flex;
-            flex-direction: column;
+            // flex-direction: column;
+            img {
+                margin: 1rem 0 1rem 0;
+                width: 20%;
+                height: 25rem;
+            }
+            .info {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                // border: 1px solid white;
+                margin: 5rem 2rem 0 2rem;
+            }
         }
     }
 }

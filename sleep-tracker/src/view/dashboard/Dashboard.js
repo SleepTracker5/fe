@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import moment from "moment";
 import "./Dashboard.css";
-import DashboardCards from "./DashboardCards";
+import { axiosWithAuth } from "../../util/axiosWithAuth";
+import DashboardCards from "../../components/DashboardCards/DashboardCards";
 import {
   BarChart,
   Bar,
@@ -12,7 +13,6 @@ import {
   Tooltip,
   Legend,
 } from "recharts";
-import { axiosWithAuth } from "../../util/axiosWithAuth";
 
 //dummy data
 const data = [
@@ -27,29 +27,32 @@ const data = [
   { date: "6 2 2020", SG: 7, AS: 7, AMT: 12 },
 ];
 
-const submitSleep = (e) => {
-  e.preventDefault();
-  axiosWithAuth()
-    .get("/sleep")
-    .then((res) => {
-      console.log(res);
-    })
-    .catch((err) => {
-      console.log("There was an error getting mock sleep data: ", err);
-    });
-};
-
 //function to create date format using moment.js on x-axis
 function formatXAxis(tickItem) {
   return moment(tickItem).format("MMM DD");
 }
 
 function Dashboard({ history }) {
+  const [sleepData, setSleepData] = useState([]);
+
+  useEffect(() => {
+    axiosWithAuth()
+      .get("/sleep")
+      .then((res) => {
+        setSleepData(res.body.data);
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log("There was an error getting mock sleep data: ", err);
+      });
+  }, []);
+
   const logout = (e) => {
     e.preventDefault();
     localStorage.removeItem("token");
     history.push("/login");
   };
+
   return (
     <div className="container">
       <div className="nav-container">
@@ -81,13 +84,14 @@ function Dashboard({ history }) {
             <Bar dataKey="SG" name="Sleep Goal" fill="#233337" unit="hrs" />
             <Bar dataKey="AS" name="Actual Sleep" fill="#A5A5A5" unit="hrs" />
           </BarChart>
-          <button className="sleep-data-btn" onClick={submitSleep}>
-            fill sleep data to graph
-          </button>
+          <button className="sleep-data-btn">fill sleep data to graph</button>
         </div>
         <h1 className="card-title">
           Week of {} - {}
         </h1>
+        {sleepData.map((sleep) => {
+          return <DashboardCards sleep={sleep} />;
+        })}
         <DashboardCards />
       </div>
       <div className="timer">

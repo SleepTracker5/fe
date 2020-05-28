@@ -75,7 +75,7 @@ const CheckboxLabel = styled.label`
 
 //Define form schema
 const formSchema = yup.object().shape({
-    email: yup.string().required("Email address is a required field"),
+    email: yup.string().min(4).required("Email address is a required field"),
     password: yup.string().min(4).required("Password is a required field"),
     keepLoggedIn: yup.boolean().oneOf([true, false]),
 });
@@ -101,6 +101,16 @@ const LoginForm = ({history}) => {
         });
     }, [formData]);
 
+    const errBounce = (event) => {
+        if(errState[event.target.name].length > 0) {
+            console.log("working: ", event.target.name);
+            const animationDuration = 0.5;
+            const tl = gsap.timeline();
+            tl.to(event.target, {duration: animationDuration / 2, y: -10});
+            tl.to(event.target, {duration: animationDuration, y: 0, ease: "bounce"});
+        }
+    };
+
     //validate user input
     const validate = (event) => {
         yup
@@ -118,14 +128,6 @@ const LoginForm = ({history}) => {
                     [event.target.name]: err.errors[0],
                 });
             });
-    };
-
-    const errBounce = (event) => {
-        console.log("working: ", event.target.name);
-        const animationDuration = 0.5;
-        const tl = gsap.timeline();
-        tl.to(event.target, {duration: animationDuration / 2, y: -10});
-        tl.to(event.target, {duration: animationDuration, y: 0, ease: "bounce"});
     };
 
     //declare handle/submit functions

@@ -16,7 +16,7 @@ const Container = styled.div`
     }
 `; 
 
-function SignUp(signin) {
+function SignUp({signin}) {
     return (
         <Container className='SignUpPage'>
             <NavBar/>

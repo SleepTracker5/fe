@@ -2,11 +2,11 @@ import React, { useEffect, useContext } from "react";
 import { SleepContext } from "../../../context/sleepContext";
 import styled from "styled-components";
 import * as yup from "yup";
-import { gsap } from "gsap";
+import {gsap} from "gsap";
 import axios from "axios";
+import {Link} from "react-router-dom";
 
 //Define styled components
-//todo: form width not quite right
 const elementMargin = "6px";
 const width100 = "@media(max-width: 500px){width: 100%;}";
 const StyledLoginForm = styled.form`
@@ -75,10 +75,11 @@ const CheckboxLabel = styled.label`
 
 //Define form schema
 const formSchema = yup.object().shape({
-  email: yup.string().required("Email address is a required field"),
-  password: yup.string().min(4).required("Password is a required field"),
-  keepLoggedIn: yup.boolean().oneOf([true, false]),
+    email: yup.string().min(4).required("Email address is a required field"),
+    password: yup.string().min(4).required("Password is a required field"),
+    keepLoggedIn: yup.boolean().oneOf([true, false]),
 });
+
 
 const LoginForm = ({ history }) => {
   const [
@@ -94,121 +95,131 @@ const LoginForm = ({ history }) => {
     formSchema.isValid(formData).then((valid) => {
       setCanLogin(valid);
     });
-  }, [formData]);
+    const [canLogin, setCanLogin] = useState(false);
 
-  //validate user input
-  const validate = (event) => {
-    yup
-      .reach(formSchema, event.target.name)
-      .validate(event.target.value)
-      .then((valid) => {
-        setErrState({
-          ...errState,
-          [event.target.name]: "",
+    useEffect(() => {
+        formSchema.isValid(formData).then((valid) => {
+            setCanLogin(valid);
         });
-      })
-      .catch((err) => {
-        setErrState({
-          ...errState,
-          [event.target.name]: err.errors[0],
+    }, [formData]);
+
+    const errBounce = (event) => {
+        if(errState[event.target.name].length > 0) {
+            console.log("working: ", event.target.name);
+            const animationDuration = 0.5;
+            const tl = gsap.timeline();
+            tl.to(event.target, {duration: animationDuration / 2, y: -10});
+            tl.to(event.target, {duration: animationDuration, y: 0, ease: "bounce"});
+        }
+    };
+
+    //validate user input
+    const validate = (event) => {
+        yup
+            .reach(formSchema, event.target.name)
+            .validate(event.target.value)
+            .then((valid) => {
+                setErrState({
+                    ...errState,
+                    [event.target.name]: "",
+                });
+            })
+            .catch((err) => {
+                setErrState({
+                    ...errState,
+                    [event.target.name]: err.errors[0],
+                });
+            });
+    };
+
+    //declare handle/submit functions
+    const handleChange = (event) => {
+        event.persist();
+        validate(event);
+        const value =
+            event.target.type === "checkbox"
+                ? event.target.checked
+                : event.target.value;
+        setFormData({...formData, [event.target.name]: value});
+    };
+    const submitLogin = (event) => {
+        event.preventDefault();
+        //I (Jaren), added in Login logic below -- "/protected" will need to be changed based on naming conventions of suggested page given.
+        axios
+            .create({baseURL: "https://sleeptrackerbw.herokuapp.com/api"})
+            .post("/login", {
+                username: formData.email,
+                password: formData.password,
+            })
+            .then((res) => {
+                console.log(res);
+                localStorage.setItem("token", res.data.data.token);
+                history.push("/dashboard");
+            })
+            .catch((err) => {
+                console.log("There was an error during login: ", err);
+            });
+        clearForm();
+    };
+    const clearForm = () => {
+        setFormData({
+            id: Date.now(),
+            email: "",
+            password: "",
+            keepLoggedIn: false,
         });
-      });
-  };
+    };
 
-  const errBounce = (event) => {
-    console.log("working: ", event.target.name);
-    const animationDuration = 0.5;
-    const tl = gsap.timeline();
-    tl.to(event.target, { duration: animationDuration / 2, y: -10 });
-    tl.to(event.target, { duration: animationDuration, y: 0, ease: "bounce" });
-  };
-
-  //declare handle/submit functions
-  const handleChange = (event) => {
-    event.persist();
-    validate(event);
-    const value =
-      event.target.type === "checkbox"
-        ? event.target.checked
-        : event.target.value;
-    setFormData({ ...formData, [event.target.name]: value });
-  };
-  const submitLogin = (event) => {
-    event.preventDefault();
-    axios
-      .create({ baseURL: "https://sleeptrackerbw.herokuapp.com/api" })
-      .post("/login", {
-        username: formData.email,
-        password: formData.password,
-      })
-      .then((res) => {
-        console.log(res);
-        localStorage.setItem("token", res.data.data.token);
-        history.push("/dashboard");
-      })
-      .catch((err) => {
-        console.log("There was an error during login: ", err);
-      });
-    clearForm();
-  };
-  const clearForm = () => {
-    setFormData({
-      id: Date.now(),
-      email: "",
-      password: "",
-      keepLoggedIn: false,
-    });
-  };
-
-  return (
-    <div className="loginForm">
-      <StyledLoginForm onSubmit={submitLogin}>
-        <StyledLabel htmlFor="email">
-          <StyledInput
-            type="text"
-            id="email"
-            name="email"
-            placeholder="username"
-            value={formData.email}
-            onChange={handleChange}
-            onBlur={errBounce}
-          />
-        </StyledLabel>
-        {errState.email.length > 0 ? (
-          <ErrP style={{ color: "red" }}>{errState.email}</ErrP>
-        ) : null}
-        <StyledLabel htmlFor="password">
-          <StyledInput
-            type="password"
-            id="password"
-            name="password"
-            placeholder="password"
-            value={formData.password}
-            onChange={handleChange}
-            onBlur={errBounce}
-          />
-        </StyledLabel>
-        {errState.password.length > 0 ? (
-          <ErrP style={{ color: "red" }}>{errState.password}</ErrP>
-        ) : null}
-        <FormLinkP>Forgot Password?</FormLinkP>
-        {/*todo: link this to something*/}
-        <FormLinkP>Don't have an account?</FormLinkP>
-        {/*todo: link to misty's page*/}
-        <CheckboxLabel htmlFor="keepLoggedIn">
-          <input
-            type="checkbox"
-            id="keepLoggedIn"
-            name="keepLoggedIn"
-            value={formData.keepLoggedIn}
-            onChange={handleChange}
-          />
-          Keep Me Logged In
-        </CheckboxLabel>
-        <LoginButton disabled={!canLogin}>Log In</LoginButton>
-      </StyledLoginForm>
-    </div>
-  );
+    return (
+        <div className="loginForm">
+            <StyledLoginForm onSubmit={submitLogin}>
+                <StyledLabel htmlFor="email">
+                    <StyledInput
+                        type="text"
+                        id="email"
+                        name="email"
+                        placeholder="username"
+                        value={formData.email}
+                        onChange={handleChange}
+                        onBlur={errBounce}
+                    />
+                </StyledLabel>
+                {errState.email.length > 0 ? (
+                    <ErrP style={{color: "red"}}>{errState.email}</ErrP>
+                ) : null}
+                <StyledLabel htmlFor="password">
+                    <StyledInput
+                        type="password"
+                        id="password"
+                        name="password"
+                        placeholder="password"
+                        value={formData.password}
+                        onChange={handleChange}
+                        onBlur={errBounce}
+                    />
+                </StyledLabel>
+                {errState.password.length > 0 ? (
+                    <ErrP style={{color: "red"}}>{errState.password}</ErrP>
+                ) : null}
+                <FormLinkP>Forgot Password?</FormLinkP>
+                {/*todo: link this to something*/}
+                <Link to={"/signup"}>
+                    <FormLinkP>Don't have an account?</FormLinkP>
+                </Link>
+                <CheckboxLabel htmlFor="keepLoggedIn">
+                    <input
+                        type="checkbox"
+                        id="keepLoggedIn"
+                        name="keepLoggedIn"
+                        value={formData.keepLoggedIn}
+                        onChange={handleChange}
+                    />
+                    Keep Me Logged In
+                </CheckboxLabel>
+                <LoginButton disabled={!canLogin}>Log In</LoginButton>
+            </StyledLoginForm>
+        </div>
+    );
 };
 
 export default LoginForm;

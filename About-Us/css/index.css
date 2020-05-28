@@ -164,3 +164,21 @@ header h1 {
     font-size: 1.5rem;
   }
 }
+.top-content {
+  display: flex;
+  flex-direction: column;
+}
+.top-content h2 {
+  font-size: 2rem;
+  font-weight: bolder;
+}
+.top-content .intro {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 10% 10% 0 10%;
+  text-align: center;
+}
+.top-content .intro P {
+  width: 40%;
+}

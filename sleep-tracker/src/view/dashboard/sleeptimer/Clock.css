@@ -3,12 +3,10 @@ body {
 }
 
 .nav-container {
-  background: linear-gradient(
-    0deg,
-    rgba(255, 255, 255, 0.09),
-    rgba(255, 255, 255, 0.09),
-    #121212
-  );
+  background: linear-gradient(0deg,
+      rgba(255, 255, 255, 0.09),
+      rgba(255, 255, 255, 0.09),
+      #121212);
   position: absolute;
   top: 0;
   left: 0;
@@ -47,6 +45,52 @@ p {
   font-size: 40px;
   text-align: center;
 }
+
+/* Modal Styles */
+
+.modal-btn {
+  position: absolute;
+  top: 225px;
+  right: -5px;
+}
+
+.ReactModal__Content--after-open {
+  margin: 10em;
+  margin-right: 16em;
+  margin-left: 16em;
+}
+
+.modal-start-title {
+  margin-top: 1.5em;
+  color: aquamarine;
+  font-size: 26px;
+}
+
+.modal-end-title {
+  margin-top: 2em;
+  color: red;
+  font-size: 26px;
+}
+
+.start-input {
+  border-radius: 8px;
+  border-color: #383838;
+  font-size: 20px;
+  background-color: #383838;
+  color: aquamarine;
+  outline: none;
+}
+
+.end-input {
+  border-radius: 8px;
+  border-color: #383838;
+  font-size: 20px;
+  background-color: #383838;
+  color: red;
+  outline: none;
+}
+
+/*End of modal styling*/
 
 button {
   position: relative;

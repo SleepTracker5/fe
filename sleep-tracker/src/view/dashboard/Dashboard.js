@@ -63,7 +63,7 @@ function Dashboard({ history }) {
           {/*****TODO:needs to be changed to whatever the route is actually named */}
           <p>About</p>
         </Link>
-        <Link className="logout" onClick={logout}>
+        <Link className="logout" onClick={logout} to="/login">
           <p>Logout</p>
         </Link>
       </div>
@@ -89,8 +89,8 @@ function Dashboard({ history }) {
         <h1 className="card-title">
           Week of {} - {}
         </h1>
-        {sleepData.map((sleep) => {
-          return <DashboardCards sleep={sleep} />;
+        {sleepData.map((sleep, index) => {
+          return <DashboardCards sleep={sleep} key={index} />;
         })}
         <DashboardCards />
       </div>

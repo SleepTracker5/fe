@@ -1,5 +1,6 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
+import Modal from "react-modal";
 import "./App.css";
 import LoginPage from "./view/LoginPage";
 import { Route, Switch } from "react-router-dom";
@@ -8,6 +9,8 @@ import Dashboard from "./view/dashboard/Dashboard";
 import NavBar from "./components/navbar/NavBar";
 import Bedtime from "./view/dashboard/sleeptimer/Bedtime";
 import { SleepProvider } from "./context/sleepContext";
+
+Modal.setAppElement("#root");
 
 function App() {
   const history = useHistory();

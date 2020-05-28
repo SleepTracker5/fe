@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import * as yup from "yup";
-import axios from "axios";
+import '../../../view/SignUp.css';
+
 
 const elementMargin = "6px";
 const width100 = "@media(max-width: 500px){width: 100%;}";
@@ -11,6 +12,7 @@ const StyledForm = styled.form`
   justify-content: left;
   align-items: left;
   margin: 4%;
+  ${width100};
 `;
 const StyledInput = styled.input`
   background: linear-gradient(
@@ -26,15 +28,15 @@ const StyledInput = styled.input`
   width: 100%;
   color: white;
   margin: ${elementMargin} 0;
-  ${width100}
+
 `;
 const FormLinkP = styled.p`
   color: rgba(255, 255, 255, 0.6);
   text-decoration: none;
-  width: 23%;
+  width: 40%;
   margin: ${elementMargin} 0;
   font-size: 12px;
-  ${width100}
+ 
 `;
 const SignupButton = styled.button`
   background: #39869d;
@@ -47,9 +49,9 @@ const SignupButton = styled.button`
   padding: 4px;
   font-size: 18px;
   line-height: 20px;
-  width: 33%;
+  width: 70%;
   color: #ffffff;
-  ${width100}
+  
 `;
 const StyledLabel = styled.label`
   width: 80%;
@@ -58,9 +60,9 @@ const StyledLabel = styled.label`
 `;
 const CheckboxLabel = styled.label`
   //this separated label is needed because checkbox formatting is different than input formatting
-  width: 34%;
+  width: 40%;
   margin: ${elementMargin} 0;
-  ${width100}
+  ${width100};
 `;
 
 
@@ -131,18 +133,20 @@ const SignUpForm = ({signin}) => {
     return (
       <div className="signupForm">
         <StyledForm>
-          <StyledLabel htmlFor="firstName">
-            <StyledInput
-              type='text'
-              id='firstName'
-              name='firstName'
-              placeholder='First Name'
-              value={input.firstName}
-              onChange={handleChange}
-            />
-          </StyledLabel>
-          <StyledLabel htmlFor="lastName">
-            <StyledInput
+          <span>
+            <div className='nameCon'>
+              <label  htmlFor="firstName">
+                <StyledInput className='firstLast'
+                type='text'
+                id='firstName'
+                name='firstName'
+                placeholder='First Name'
+                value={input.firstName}
+                onChange={handleChange}
+                />
+            </label>
+              <label  htmlFor="lastName">
+            <StyledInput className='firstLast'
               type='text'
               id='lastName'
               name='lastName'
@@ -150,27 +154,30 @@ const SignUpForm = ({signin}) => {
               value={input.lastName}
               onChange={handleChange}
             />
-          </StyledLabel>
-          <StyledLabel htmlFor="email">
+          </label>
+            </div>
+            <StyledLabel htmlFor="email">
             <StyledInput
                 type="text"
                 id="email"
                 name="email"
-                placeholder="username"
+                placeholder="Email Address"
                 value={input.email}
                 onChange={handleChange}
             />
           </StyledLabel>
-          <StyledLabel htmlFor="password">
+            <StyledLabel htmlFor="password">
+        
             <StyledInput
                 type="password"
                 id="password"
                 name="password"
-                placeholder="password"
+                placeholder="Password"
                 value={input.password}
                 onChange={handleChange}
             />
           </StyledLabel>
+          </span>
           <FormLinkP>Forgot Password?</FormLinkP>
           <CheckboxLabel htmlFor="keepLoggedIn">
             <input

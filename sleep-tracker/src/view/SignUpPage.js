@@ -2,6 +2,7 @@ import React from 'react';
 import SignUpForm from '../components/forms/SignUp/SignUpForm';
 import styled from "styled-components";
 import NavBar from "../components/navbar/NavBar";
+import './SignUp.css';
 
 const Container = styled.div`
     display: flex;
@@ -21,10 +22,10 @@ function SignUp(signin) {
             <NavBar/>
 
             <div className='container'>
-                <h1>Let's Get Started</h1>
+                <h1>Let's Get Started!</h1>
                 <p>Let Sleep Tracker help you discover your ideal sleep schedule.</p>
             </div>
-            <SignUpForm signin={signin} />
+            <SignUpForm className='formContainer' signin={signin} />
         </Container>
     );
 

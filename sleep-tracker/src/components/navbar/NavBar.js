@@ -2,7 +2,6 @@ import React from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import "./NavBar.css";
-import LoginForm from "../forms/LogIn/LoginForm";
 
 const elementMargin = "4px;";
 const NavContainer = styled.div`

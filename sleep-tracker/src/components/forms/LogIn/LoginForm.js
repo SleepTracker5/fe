@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useContext } from "react";
+import { SleepContext } from "../../../context/sleepContext";
 import styled from "styled-components";
 import * as yup from "yup";
 import { gsap } from "gsap";
@@ -80,21 +81,14 @@ const formSchema = yup.object().shape({
 });
 
 const LoginForm = ({ history }) => {
-  //set state vars
-  const [formData, setFormData] = useState({
-    // id: Date.now(),  -- NODE backend will generate ID automatically
-    email: "",
-    password: "",
-    keepLoggedIn: false,
-  });
-  const [errState, setErrState] = useState({
-    id: "",
-    email: "",
-    password: "",
-    keepLoggedIn: "",
-  });
-  const [canLogin, setCanLogin] = useState(false);
-
+  const [
+    formData,
+    setFormData,
+    errState,
+    setErrState,
+    canLogin,
+    setCanLogin,
+  ] = useContext(SleepContext);
   //todo: check form validation and set button abled here
   useEffect(() => {
     formSchema.isValid(formData).then((valid) => {

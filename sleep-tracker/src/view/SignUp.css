@@ -1,0 +1,45 @@
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa');
+
+html{
+    font-family: Comfortaa, serif;
+    background-color: black;
+    color: rgba(255, 255, 255, 0.6);
+    box-sizing: border-box;
+}
+body{
+    font-family: Comfortaa, serif;
+}
+
+h1{
+    font-style: normal;
+    font-weight: bold;
+    font-size: 48px;
+    line-height: 54px;
+}
+
+
+ .signupForm{
+    width: 40%;
+}
+
+/*.formContainer{
+    width: 100%;
+}
+label{
+    width: 100%;
+}
+label  */
+
+section div.nameCon{
+    width:100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+label{
+    width: 100%;
+}
+
+label .firstLast{
+    width:90%;
+}

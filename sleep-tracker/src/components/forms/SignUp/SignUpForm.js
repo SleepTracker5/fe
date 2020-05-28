@@ -28,6 +28,7 @@ const StyledInput = styled.input`
   width: 100%;
   color: white;
   margin: ${elementMargin} 0;
+  ${width100};
 
 `;
 const FormLinkP = styled.p`
@@ -54,7 +55,7 @@ const SignupButton = styled.button`
   
 `;
 const StyledLabel = styled.label`
-  width: 80%;
+  width: 100%;
   margin: ${elementMargin} 0;
   ${width100}
 `;
@@ -133,7 +134,7 @@ const SignUpForm = ({signin}) => {
     return (
       <div className="signupForm">
         <StyledForm>
-          <span>
+          <section>
             <div className='nameCon'>
               <label  htmlFor="firstName">
                 <StyledInput className='firstLast'
@@ -146,14 +147,14 @@ const SignUpForm = ({signin}) => {
                 />
             </label>
               <label  htmlFor="lastName">
-            <StyledInput className='firstLast'
-              type='text'
-              id='lastName'
-              name='lastName'
-              placeholder='Last Name'
-              value={input.lastName}
-              onChange={handleChange}
-            />
+                <StyledInput className='firstLast'
+                type='text'
+                id='lastName'
+                name='lastName'
+                placeholder='Last Name'
+                value={input.lastName}
+                onChange={handleChange}
+                />
           </label>
             </div>
             <StyledLabel htmlFor="email">
@@ -177,7 +178,7 @@ const SignUpForm = ({signin}) => {
                 onChange={handleChange}
             />
           </StyledLabel>
-          </span>
+          </section>
           <FormLinkP>Forgot Password?</FormLinkP>
           <CheckboxLabel htmlFor="keepLoggedIn">
             <input

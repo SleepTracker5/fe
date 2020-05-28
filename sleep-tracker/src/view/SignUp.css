@@ -19,7 +19,7 @@ h1{
 
 
  .signupForm{
-    width: 100%;
+    width: 40%;
 }
 
 /*.formContainer{
@@ -30,11 +30,16 @@ label{
 }
 label  */
 
-span div .nameCon{
-    width:50%;
+section div.nameCon{
+    width:100%;
     display: flex;
+    justify-content: space-between;
 }
 
-.firstLast{
-    width:50%;
+label{
+    width: 100%;
+}
+
+label .firstLast{
+    width:90%;
 }

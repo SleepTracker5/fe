@@ -197,7 +197,6 @@ header h1 {
   height: auto;
 }
 .top-content .goal {
-  background-color: darkslategrey;
   display: flex;
   flex-direction: column;
   margin: 5% 10% 0 10%;

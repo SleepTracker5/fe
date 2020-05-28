@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import styled from 'styled-components';
 import * as yup from "yup";
 import '../../../view/SignUp.css';
@@ -73,7 +73,7 @@ const formSchema = yup.object().shape({
     email: yup.string().required("Email address is a required field"),
     password: yup.string().min(4).required("Password is a required field"),
     keepLoggedIn: yup.boolean().oneOf([true, false]),
-  });
+});
 
 const SignUpForm = ({signin}) => {
     /* state */
@@ -93,107 +93,108 @@ const SignUpForm = ({signin}) => {
         email: '',
         password: '',
         keepLoggedIn: '',
-      });
-      const [canLogin, setCanLogin] = useState(false);
+    });
+    const [canLogin, setCanLogin] = useState(false);
 
-      useEffect(() => {
+    useEffect(() => {
         formSchema.isValid(input).then((valid) => {
-          setCanLogin(valid);
+            setCanLogin(valid);
         });
-      }, [input]);
+    }, [input]);
 
-      const validate = (event) => {
+    const validate = (event) => {
         yup
-          .reach(formSchema, event.target.name)
-          .validate(event.target.value)
-          .then((valid) => {
-            setErrState({
-              ...errState,
-              [event.target.name]: "",
+            .reach(formSchema, event.target.name)
+            .validate(event.target.value)
+            .then((valid) => {
+                setErrState({
+                    ...errState,
+                    [event.target.name]: "",
+                });
+            })
+            .catch((err) => {
+                setErrState({
+                    ...errState,
+                    [event.target.name]: err.errors[0],
+                });
             });
-          })
-          .catch((err) => {
-            setErrState({
-              ...errState,
-              [event.target.name]: err.errors[0],
-            });
-          });
-      };
+    };
 
 
     const handleChange = (event) => {
         event.persist();
-    validate(event);
-    const value =
-      event.target.type === "checkbox"
-        ? event.target.checked
-        : event.target.value;
-        setInput({...input,[event.target.name]: value})
+        validate(event);
+        const value =
+            event.target.type === "checkbox"
+                ? event.target.checked
+                : event.target.value;
+        setInput({...input, [event.target.name]: value})
     };
 
     return (
-      <div className="signupForm">
-        <StyledForm>
-          <section>
-            <div className='nameCon'>
-              <label  htmlFor="firstName">
-                <StyledInput className='firstLast'
-                type='text'
-                id='firstName'
-                name='firstName'
-                placeholder='First Name'
-                value={input.firstName}
-                onChange={handleChange}
-                />
-            </label>
-              <label  htmlFor="lastName">
-                <StyledInput className='firstLast'
-                type='text'
-                id='lastName'
-                name='lastName'
-                placeholder='Last Name'
-                value={input.lastName}
-                onChange={handleChange}
-                />
-          </label>
-            </div>
-            <StyledLabel htmlFor="email">
-            <StyledInput
-                type="text"
-                id="email"
-                name="email"
-                placeholder="Email Address"
-                value={input.email}
-                onChange={handleChange}
-            />
-          </StyledLabel>
-            <StyledLabel htmlFor="password">
-        
-            <StyledInput
-                type="password"
-                id="password"
-                name="password"
-                placeholder="Password"
-                value={input.password}
-                onChange={handleChange}
-            />
-          </StyledLabel>
-          </section>
-          <FormLinkP>Forgot Password?</FormLinkP>
-          <CheckboxLabel htmlFor="keepLoggedIn">
-            <input
-                type="checkbox"
-                id="keepLoggedIn"
-                name="keepLoggedIn"
-                value={input.keepLoggedIn}
-                onChange={handleChange}
-            />
-          Keep Me Logged In
-          </CheckboxLabel>
-          <SignupButton disabled={!canLogin}>Sign Up</SignupButton>
-        </StyledForm>
-      </div>
+        <div className="signupForm">
+            <StyledForm>
+                <section>
+                    <div className='nameCon'>
+                        <label htmlFor="firstName">
+                            <StyledInput className='firstLast'
+                                         type='text'
+                                         id='firstName'
+                                         name='firstName'
+                                         placeholder='First Name'
+                                         value={input.firstName}
+                                         onChange={handleChange}
+                            />
+                        </label>
+                        <label htmlFor="lastName">
+                            <StyledInput className='firstLast'
+                                         type='text'
+                                         id='lastName'
+                                         name='lastName'
+                                         placeholder='Last Name'
+                                         value={input.lastName}
+                                         onChange={handleChange}
+                            />
+                        </label>
+                    </div>
+                    <StyledLabel htmlFor="email">
+                        <StyledInput
+                            type="text"
+                            id="email"
+                            name="email"
+                            placeholder="Email Address"
+                            value={input.email}
+                            onChange={handleChange}
+                        />
+                    </StyledLabel>
+                    <StyledLabel htmlFor="password">
+
+                        <StyledInput
+                            type="password"
+                            id="password"
+                            name="password"
+                            placeholder="Password"
+                            value={input.password}
+                            onChange={handleChange}
+                        />
+                    </StyledLabel>
+                </section>
+                <FormLinkP>Forgot Password?</FormLinkP>
+                <CheckboxLabel htmlFor="keepLoggedIn">
+                    <input
+                        type="checkbox"
+                        id="keepLoggedIn"
+                        name="keepLoggedIn"
+                        value={input.keepLoggedIn}
+                        onChange={handleChange}
+                    />
+                    Keep Me Logged In
+                </CheckboxLabel>
+                <SignupButton disabled={!canLogin}>Sign Up</SignupButton>
+            </StyledForm>
+        </div>
     );
-;}
+    ;
+}
 
 export default SignUpForm

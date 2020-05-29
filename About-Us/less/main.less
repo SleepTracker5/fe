@@ -30,6 +30,15 @@
             width: 50%;
             height: auto;
         }
+        @media (max-width: 500px) {
+            width: 90%;
+            // border: 1px  solid green;
+            p {
+                margin: 0;
+                font-size: 1rem;
+                width: 90%;
+            }
+        }
     }
     .goal {
         // background-color: darkslategrey;
@@ -91,6 +100,21 @@
                 justify-content: center;
                 // border: 1px solid white;
                 margin: 5rem 2rem 0 2rem;
+            }
+        }
+    }
+    @media (max-width: 500px) {
+        .team{
+            .member {
+                flex-direction: column;
+                img {
+                    height: 20rem;
+                    width: 20rem;
+                    // border: 1px solid red;
+                }
+                .info {
+                    margin: 1rem;
+                }
             }
         }
     }

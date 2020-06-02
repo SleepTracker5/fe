@@ -36,8 +36,8 @@ a {
 }
 
 .chart-container {
-  margin-left: 20em;
-  margin-right: 20em;
+  margin-left: 10em;
+  margin-right: 10em;
 }
 
 .chart-wrapper {
@@ -61,9 +61,14 @@ button {
   background-color: #171717;
 }
 
+.card-container {
+  width: 48%;
+  display: flex;
+  flex-wrap: wrap;
+}
+
 .card-wrapper {
   margin-top: 5em;
   padding: 6px 0;
-  width: 55%;
   background-color: #171717;
 }

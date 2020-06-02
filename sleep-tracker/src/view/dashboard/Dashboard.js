@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import moment from "moment";
 import "./Dashboard.css";
 import { axiosWithAuth } from "../../util/axiosWithAuth";
-import DashboardCards from "../../components/DashboardCards/DashboardCards";
+import DashboardCards from "./updateCards/DashboardCards";
 import {
   BarChart,
   Bar,

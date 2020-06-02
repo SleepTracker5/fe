@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Modal from "react-modal";
-import { axiosWithAuth } from "../../util/axiosWithAuth";
-import { useHistory } from "react-router-dom";
+import { axiosWithAuth } from "../../../util/axiosWithAuth";
+// import { useHistory } from "react-router-dom";
 
 const initalSleepState = {
   id: "",
@@ -10,7 +10,7 @@ const initalSleepState = {
 };
 
 function DashboardCards({ sleep }) {
-  const history = useHistory();
+  // const history = useHistory();
 
   const [editSleep, setEditSleep] = useState(initalSleepState);
   const [modalIsOpen, setModalIsOpen] = useState(false);
@@ -40,7 +40,7 @@ function DashboardCards({ sleep }) {
   const deleteSleep = (e) => {
     e.preventDefault();
     axiosWithAuth()
-      .delete(`/sleep/${sleep.id}`) //need to figure out what the name of the state will be before id.
+      .delete(`/sleep/${sleep.id}`)
       .then((res) => {
         console.log("The res for delete is: ", res);
       })
@@ -70,7 +70,7 @@ function DashboardCards({ sleep }) {
             },
           }}
         >
-          <form onSubmit={saveChanges}>
+          <form onSubmit={submitSleepEdit}>
             <h2 className="modal-start-title">
               What time did you fall asleep?
             </h2>
@@ -89,14 +89,14 @@ function DashboardCards({ sleep }) {
               placeholder=""
               onChange={changeHandler}
             />
+            <button
+              className="modal-btn"
+              onClick={() => setModalIsOpen(false)}
+              type="submit"
+            >
+              Save
+            </button>
           </form>
-          <button
-            className="modal-btn"
-            onClick={() => setModalIsOpen(false)}
-            type="submit"
-          >
-            Save
-          </button>
         </Modal>
         <button className="delete-card" onClick={deleteSleep}>
           Delete

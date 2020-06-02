@@ -1,9 +1,9 @@
 import React from "react";
-import { useHistory, Route, Switch, Link } from "react-router-dom";
+import { useHistory, Route, Switch } from "react-router-dom";
 import Modal from "react-modal";
 import "./App.css";
 import LoginPage from "./view/LoginPage";
-import SignUp from './view/SignUpPage';
+import SignUp from "./view/SignUpPage";
 import PrivateRoute from "./components/PrivateRoute";
 import Dashboard from "./view/dashboard/Dashboard";
 import NavBar from "./components/navbar/NavBar";
@@ -26,9 +26,9 @@ function App() {
           <Route path="/login">
             <LoginPage history={history} />
           </Route>
-    <Route path="/signup">
-          <SignUp/>
-        </Route>
+          <Route path="/signup">
+            <SignUp />
+          </Route>
           <PrivateRoute exact path="/dashboard" component={Dashboard} />
           <Route path="/dashboard">
             <Dashboard history={history} />

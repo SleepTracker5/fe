@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { axiosWithAuth } from "../../util/axiosWithAuth";
+import { axiosWithAuth } from "../../../util/axiosWithAuth";
 
 const initalSleepState = {
   id: "",
@@ -23,15 +23,10 @@ const UpdateDashboardCards = () => {
 
   const changeHandler = (e) => {
     e.persist();
-    let tName = e.target.name;
-    let tValue = e.target.value;
-    setEditSleep({
-      ...editSleep,
-      [tName]: tValue,
-    });
+    setEditSleep(e.target.value);
   };
 
-  //FORM RENDERS ON BUTTON PUSH *EDIT BUTTON*
+  //FORM (MODAL) RENDERS ON BUTTON CLICK *EDIT BUTTON*
   return (
     <div className="update-dashboard-cards-form">
       <form onSubmit={submitSleep}>

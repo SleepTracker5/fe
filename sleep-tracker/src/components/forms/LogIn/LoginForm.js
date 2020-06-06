@@ -104,7 +104,6 @@ const LoginForm = ({ history, setLoggingIn }) => {
 
     const errBounce = (event) => {
         if(errState[event.target.name].length > 0) {
-            console.log("working: ", event.target.name);
             const animationDuration = 0.5;
             const tl = gsap.timeline();
             tl.to(event.target, {duration: animationDuration / 2, y: -10});
@@ -152,7 +151,7 @@ const LoginForm = ({ history, setLoggingIn }) => {
                 password: formData.password,
             })
             .then((res) => {
-                console.log(res);
+                //console.log(res);
                 localStorage.setItem("token", res.data.data.token);
                 history.push("/dashboard");
             })

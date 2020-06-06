@@ -41,7 +41,7 @@ function Dashboard({history}) {
             .get("/sleep")
             .then((res) => {
                 setSleepData(res.body.data);
-                console.log(res);
+                //console.log(res);
             })
             .catch((err) => {
                 console.log("There was an error getting mock sleep data: ", err);

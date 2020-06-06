@@ -28,6 +28,13 @@ const NavBarP = styled.p`
   margin: ${elementMargin} 0;
 `;
 
+/**
+ * @param buttonName: Required field for button to render
+ * @param buttonPath: Required field for button to link somewhere
+ * @param buttonAction: Optional field, if the button does something more than linking, such as a logout button
+ * @returns {jsx}
+ * @constructor
+ */
 const NavBar = ({buttonName, buttonPath, buttonAction}) => {
   return (
     <NavContainer className="navbar">
@@ -38,7 +45,6 @@ const NavBar = ({buttonName, buttonPath, buttonAction}) => {
       {/*todo: maybe link this to Clayton's marketing pages?*/}
       <Link className="navlink" to={`/${buttonPath}`} onClick={buttonAction ? buttonAction : null}>
         <NavBarP>{buttonName}</NavBarP>
-        {/*todo: Add routes*/}
       </Link>
     </NavContainer>
   );

@@ -24,3 +24,10 @@ h1{
 .loginForm{
     width: 50%;
 }
+
+.loggingIn{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 95vh;
+}

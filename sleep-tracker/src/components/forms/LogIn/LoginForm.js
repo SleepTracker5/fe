@@ -81,7 +81,7 @@ const formSchema = yup.object().shape({
 });
 
 
-const LoginForm = ({ history }) => {
+const LoginForm = ({ history, setLoggingIn }) => {
   const [
     formData,
     setFormData,
@@ -142,6 +142,7 @@ const LoginForm = ({ history }) => {
         setFormData({...formData, [event.target.name]: value});
     };
     const submitLogin = (event) => {
+        setLoggingIn(true);//todo: make this part of the SleepContext?
         event.preventDefault();
         //I (Jaren), added in Login logic below -- "/protected" will need to be changed based on naming conventions of suggested page given.
         axios

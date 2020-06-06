@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useContext, useState} from "react";
 import LoginForm from "../components/forms/LogIn/LoginForm";
 import "./LoginPage.css";
 import styled from "styled-components";
@@ -16,19 +16,23 @@ const Container = styled.div`
   }
 `;
 
-const LoginPage = ({ history }) => {
-  return (
-    <Container className="loginPage">
-      <NavBar buttonName="login" buttonPath={"login"}/>
-      <div className="leftContent">
-        <h1>Welcome Back!</h1>
-        <p className="oneStepCloser">
-          You’re one step closer to finding your ideal sleep schedule.
-        </p>
-      </div>
-      <LoginForm history={history} />
-    </Container>
-  );
+const LoginPage = ({history}) => {
+
+    const [loggingIn, setLoggingIn] = useState(false);//todo: make this part of the sleepcontext
+
+    if(loggingIn) return <div className="loggingIn"><h1>Logging In...</h1></div>;
+    return (
+        <Container className="loginPage">
+            <NavBar buttonName="login" buttonPath={"login"}/>
+            <div className="leftContent">
+                <h1>Welcome Back!</h1>
+                <p className="oneStepCloser">
+                    You’re one step closer to finding your ideal sleep schedule.
+                </p>
+            </div>
+            <LoginForm setLoggingIn={setLoggingIn} history={history}/>
+        </Container>
+    );
 };
 
 export default LoginPage;

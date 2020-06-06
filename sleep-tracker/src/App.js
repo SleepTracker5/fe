@@ -21,7 +21,7 @@ function App() {
         {/*todo: create a home page?*/}
         <Switch>
           <Route exact path="/">
-            <NavBar />
+            <NavBar buttonName="login" buttonPath="login"/>
           </Route>
           <Route path="/login">
             <LoginPage history={history} />

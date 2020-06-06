@@ -1,4 +1,8 @@
+/*todo: add a reset somewhere?*/
 @import url('https://fonts.googleapis.com/css2?family=Comfortaa');
+
+
+
 
 html{
     font-family: Comfortaa, serif;
@@ -17,29 +21,18 @@ h1{
     line-height: 54px;
 }
 
-
- .signupForm{
-    width: 40%;
-}
-
-/*.formContainer{
-    width: 100%;
-}
-label{
-    width: 100%;
-}
-label  */
-
-section div.nameCon{
-    width:100%;
+.nameContainer{
     display: flex;
     justify-content: space-between;
+    align-items: center;
+    width: 80%;
 }
 
-label{
-    width: 100%;
+.nameContainer > *{
+    width: 45%;
 }
 
-label .firstLast{
-    width:90%;
+/*leftContent and loginForm are the two halves(left and right) of the login page*/
+.signUpForm{
+    width: 50%;
 }

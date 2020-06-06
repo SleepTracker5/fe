@@ -1,9 +1,10 @@
 import React from 'react';
 import SignUpForm from '../components/forms/SignUp/SignUpForm';
-import styled from "styled-components";
 import NavBar from "../components/navbar/NavBar";
-import './SignUp.css';
+import "./SignUpPage.css";
+import styled from "styled-components";
 
+//define styled component
 const Container = styled.div`
     display: flex;
     justify-content: center;
@@ -14,21 +15,20 @@ const Container = styled.div`
     @media(max-width: 500px){
         flex-direction: column;
     }
-`; 
+`;
 
-function SignUp({signin}) {
+function SignUpPage({history}) {
     return (
         <Container className='SignUpPage'>
             <NavBar/>
-
-            <div className='container'>
-                <h1>Let's Get Started!</h1>
-                <p>Let Sleep Tracker help you discover your ideal sleep schedule.</p>
+            <div className="leftContent">
+                <h1>Let's get started!</h1>
+                <p className="letSleepTracker">Let sleep tracker help you discover your ideal sleep schedule.</p>
             </div>
-            <SignUpForm className='formContainer' signin={signin} />
+            <SignUpForm history={history}/>
         </Container>
     );
 
 }
 
-export default SignUp;
+export default SignUpPage;

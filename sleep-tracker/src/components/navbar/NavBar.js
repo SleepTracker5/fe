@@ -28,7 +28,7 @@ const NavBarP = styled.p`
   margin: ${elementMargin} 0;
 `;
 
-const NavBar = () => {
+const NavBar = ({buttonName, buttonPath, buttonAction}) => {
   return (
     <NavContainer className="navbar">
       <Link className="navlink" to="/">
@@ -36,8 +36,8 @@ const NavBar = () => {
       </Link>
       <NavBarP>About</NavBarP>
       {/*todo: maybe link this to Clayton's marketing pages?*/}
-      <Link className="navlink" to="/login">
-        <NavBarP>login</NavBarP>
+      <Link className="navlink" to={`/${buttonPath}`} onClick={buttonAction ? buttonAction : null}>
+        <NavBarP>{buttonName}</NavBarP>
         {/*todo: Add routes*/}
       </Link>
     </NavContainer>

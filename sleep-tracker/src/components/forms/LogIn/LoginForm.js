@@ -90,7 +90,6 @@ const LoginForm = ({ history }) => {
     canLogin,
     setCanLogin,
   ] = useContext(SleepContext);
-  //todo: check form validation and set button abled here
     useEffect(() => {
       formSchema.isValid(formData).then((valid) => {
           setCanLogin(valid);

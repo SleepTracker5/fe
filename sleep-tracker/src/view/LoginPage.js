@@ -19,7 +19,7 @@ const Container = styled.div`
 const LoginPage = ({ history }) => {
   return (
     <Container className="loginPage">
-      <NavBar />
+      <NavBar buttonName="login" buttonPath={"login"}/>
       <div className="leftContent">
         <h1>Welcome Back!</h1>
         <p className="oneStepCloser">

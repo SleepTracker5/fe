@@ -20,7 +20,7 @@ const Container = styled.div`
 function SignUpPage({history}) {
     return (
         <Container className='SignUpPage'>
-            <NavBar/>
+            <NavBar buttonName="login" buttonPath={"login"}/>
             <div className="leftContent">
                 <h1>Let's get started!</h1>
                 <p className="letSleepTracker">Let sleep tracker help you discover your ideal sleep schedule.</p>

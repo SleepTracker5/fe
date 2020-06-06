@@ -1,0 +1,45 @@
+//Navigation styling
+header {
+    display: flex;
+    // border: 1px solid red;
+    background: linear-gradient(
+    0deg,
+    rgba(255, 255, 255, 0.09),
+    rgba(255, 255, 255, 0.09)
+  ),
+  #121212;
+    // width: 100%
+    nav {
+      display: flex;
+      width: 71%;
+      justify-content: space-between;
+    //   border: 1px solid purple;
+      a {
+          display: flex;
+        font-size: 1.2rem;
+        text-decoration: none;
+        color: darken(@white87, 30%);
+        margin: 2% 0 2% 0;
+      }
+      a:hover {
+        color: @astrallight;
+    }
+    }
+    h1 {
+        font-size: 2.3rem;
+        color: @white60;
+        margin: 1% 10% 1% 5%;
+    }
+    @media (max-width: 500px) {
+        nav {
+            margin: 5% 1% 0 0;
+            a {
+                font-size: 1rem;
+            }
+        }
+        h1 {
+            font-size: 1.5rem;
+        }
+    }
+}
+
